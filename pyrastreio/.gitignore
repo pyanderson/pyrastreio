@@ -1,0 +1,11 @@
+*.pyc
+.*.swp
+*.egg
+docs/.build
+docs/_build
+build/
+dist/
+pyrastreio.egg-info/
+env/
+.pypirc
+.idea
