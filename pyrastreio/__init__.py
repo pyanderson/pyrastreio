@@ -4,9 +4,9 @@ from bs4 import BeautifulSoup as bs4
 
 
 def rastreio(codigo):
-    headers = {'Referer': 'http://www2.correios.com.br/sistemas/rastreamento/default.cfm'}  # noqa
-    url = 'http://www2.correios.com.br/sistemas/rastreamento/resultado.cfm?'
-    data = {'objetos': codigo, 'btnPesq': 'Buscar'}
+    headers = {'Referer': 'https://www2.correios.com.br/sistemas/rastreamento/'}  # noqa
+    url = 'https://www2.correios.com.br/sistemas/rastreamento/ctrl/ctrlRastreamento.cfm?' # noqa
+    data = {'objetos': codigo, 'btnPesq': 'Buscar', 'acao': 'track'}
     res = requests.post(url, data=data, headers=headers)
     parser = bs4(res.text, 'html.parser')
     dt_eventos = parser.find_all('td', {'class': 'sroDtEvent'})
