@@ -29,9 +29,9 @@ def jadlog(codigo):
     res = requests.get(url, params={'cte': codigo})
     parser = bs4(res.text, 'html.parser')
     eventos = []
-    keys = ['data/hora', 'origem', 'status', 'destino', 'documento']
+    chaves = ['data/hora', 'origem', 'status', 'destino', 'documento']
     for tr in parser.find_all('tr')[1:]:
         tds = tr.find_all('td')
         if len(tds) == 5:
-            eventos.append({k: v.text.strip() for k, v in zip(keys, tds)})
+            eventos.append({c: v.text.strip() for c, v in zip(chaves, tds)})
     return eventos
