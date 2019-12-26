@@ -3,7 +3,7 @@ rm -rf build/ dist/
 
 python setup.py sdist bdist_wheel
 
-if [ -n "$1" ] && [ "$1" == "prod" ]
+if [ "$1" == "prod" ]
 then
     twine upload dist/*
 else

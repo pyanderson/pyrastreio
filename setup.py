@@ -6,7 +6,7 @@ with open('README.md', 'r') as readme:
 
 setup(
     name='pyrastreio',
-    version='0.1.2',
+    version='0.1.3',
     url='https://github.com/pyanderson/pyrastreio',
     license='MIT License',
     author='Anderson Lima',
