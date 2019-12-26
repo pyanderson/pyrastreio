@@ -1,9 +1,10 @@
 import re
+
 import requests
 from bs4 import BeautifulSoup as bs4
 
 
-def rastreio(codigo):
+def correios(codigo):
     headers = {'Referer': 'https://www2.correios.com.br/sistemas/rastreamento/'}  # noqa
     url = 'https://www2.correios.com.br/sistemas/rastreamento/ctrl/ctrlRastreamento.cfm?' # noqa
     data = {'objetos': codigo, 'btnPesq': 'Buscar', 'acao': 'track'}
@@ -20,4 +21,17 @@ def rastreio(codigo):
         evento['local'] = ' '.join(dt_info[2:])
         evento['mensagem'] = ' '.join(regex.sub(' ', lb.text).split())
         eventos.append(evento)
+    return eventos
+
+
+def jadlog(codigo):
+    url = 'http://www.jadlog.com.br/siteInstitucional/tracking_dev.jad'
+    res = requests.get(url, params={'cte': codigo})
+    parser = bs4(res.text, 'html.parser')
+    eventos = []
+    keys = ['data/hora', 'origem', 'status', 'destino', 'documento']
+    for tr in parser.find_all('tr')[1:]:
+        tds = tr.find_all('td')
+        if len(tds) == 5:
+            eventos.append({k: v.text.strip() for k, v in zip(keys, tds)})
     return eventos
