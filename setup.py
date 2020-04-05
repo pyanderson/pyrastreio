@@ -11,8 +11,8 @@ setup(
     license='MIT License',
     author='Anderson Lima',
     author_email='anderson.sl93@hotmail.com',
-    keywords='rastreio encomenda correios jadlog',
-    description='Biblioteca/CLI para rastreio de encomendas nos sistemas do correios e jadlog.',  # noqa
+    keywords='rastreio encomenda correios jadlog sequoia',
+    description='Biblioteca/CLI para rastreio de encomendas de diversos sistemas.',  # noqa
     long_description=long_description,
     long_description_content_type='text/markdown',
     packages=find_packages(),
